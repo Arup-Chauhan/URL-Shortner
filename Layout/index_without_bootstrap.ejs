@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    header {
+      background-color: #007BFF;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    form {
+      display: flex;
+      align-items: center;
+    }
+    input[type="url"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>URL Shortener</h1>
+  </header>
+  <div class="container">
+    <form action="/shortUrls" method="POST">
+      <input type="url" name="fullUrl" placeholder="URL" required>
+      <button type="submit">Shorten</button>
+    </form>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Full URL</th>
+          <th>Short URL</th>
+          <th>Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shortUrls.forEach(shortUrl => { %>
+          <tr>
+            <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+            <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+            <td><%= shortUrl.clicks %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
